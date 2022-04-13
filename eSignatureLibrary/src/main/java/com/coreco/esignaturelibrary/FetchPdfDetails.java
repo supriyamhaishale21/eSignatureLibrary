@@ -94,7 +94,7 @@ public class FetchPdfDetails {
         inputhash_em.appendChild(document.createTextNode("a20a9d837daf39efb889e8246031b6e315e5c7a0793394a4a4bf6a3342b75109"));
 
         Element signature_em = document.createElement("Signature");
-        signature_em.setNodeValue("xmlns=http://www.w3.org/2000/09/xmldsig#");
+        signature_em.setTextContent("xmlns=http://www.w3.org/2000/09/xmldsig#");
 
         rootElement.appendChild(signature_em);
 
