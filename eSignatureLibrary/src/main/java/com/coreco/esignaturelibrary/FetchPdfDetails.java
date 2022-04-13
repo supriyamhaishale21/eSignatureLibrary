@@ -22,19 +22,18 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 public class FetchPdfDetails {
-    public static void fetchDetails(Context c, ArrayList<String> pdfDetails) {
+    public static void fetchDetails(Context c, ArrayList<String> pdfDetails)
+            throws ParserConfigurationException, TransformerException, IOException {
 
 
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder documentBuilder = null;
-        try {
-            documentBuilder = documentBuilderFactory.newDocumentBuilder();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        }
+        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+
+        // root elements
         Document document = documentBuilder.newDocument();
         Element rootElement = document.createElement("Esign");
-        // set an attribute to staff element
+
+        // set an attribute to Esign element
         Attr attr = document.createAttribute("ver");
         attr.setValue("2.1");
         rootElement.setAttributeNode(attr);
@@ -73,8 +72,11 @@ public class FetchPdfDetails {
 
         document.appendChild(rootElement);
 
+        //create Docs element
         Element doc_em = document.createElement("Docs");
         rootElement.appendChild(doc_em);
+
+        //create InputHash element
 
         Element inputhash_em = document.createElement("InputHash");
         doc_em.appendChild(inputhash_em);
@@ -93,30 +95,26 @@ public class FetchPdfDetails {
 
         inputhash_em.appendChild(document.createTextNode("a20a9d837daf39efb889e8246031b6e315e5c7a0793394a4a4bf6a3342b75109"));
 
+        //create Signature element
         Element signature_em = document.createElement("Signature");
-        signature_em.setTextContent("xmlns=http://www.w3.org/2000/09/xmldsig#");
+        Attr signature_attr = document.createAttribute("xmlns");
+        signature_attr.setValue("http://www.w3.org/2000/09/xmldsig#");
+        signature_em.setAttributeNode(signature_attr);
 
         rootElement.appendChild(signature_em);
 
+        // write dom document to a file and write doc to output stream
         TransformerFactory transformerFactory = TransformerFactory.newInstance();  // This code
         Transformer transformer = null;                // doesn't work
-        try {
-            transformer = transformerFactory.newTransformer();
-        } catch (TransformerConfigurationException e) {
-            e.printStackTrace();
-        }
+
+        transformer = transformerFactory.newTransformer();
+
         DOMSource source = new DOMSource(document);                                  // with Android
         StreamResult result = null;                          //  :(
-        try {
-            result = new StreamResult(File.createTempFile("abc",".xml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            transformer.transform(source, result);
-        } catch (TransformerException e) {
-            e.printStackTrace();
-        }
+
+        result = new StreamResult(File.createTempFile("eSignature_payload", ".xml"));
+
+        transformer.transform(source, result);
 
     }
 }
