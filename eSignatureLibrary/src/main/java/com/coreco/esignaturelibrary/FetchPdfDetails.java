@@ -6,6 +6,8 @@ import android.widget.Toast;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -51,7 +53,12 @@ public class FetchPdfDetails {
             e.printStackTrace();
         }
         DOMSource source = new DOMSource(document);                                  // with Android
-        StreamResult result = new StreamResult("c:\\abc.xml");                          //  :(
+        StreamResult result = null;                          //  :(
+        try {
+            result = new StreamResult(File.createTempFile("abc",".xml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         try {
             transformer.transform(source, result);
         } catch (TransformerException e) {
