@@ -14,11 +14,18 @@ import org.json.JSONObject;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.Attributes;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -29,6 +36,8 @@ import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -155,7 +164,7 @@ public class AppendDigitalSignOnPdf {
                 "<Esign ver=\"" + eSignListDetails.get(0).getVer() +
                 "\" AuthMode=\"" + eSignListDetails.get(0).getAuthMode() +
                 "\" aspId=\"" + eSignListDetails.get(0).getAspId()
-                + "\" ekycIdType=\"A\" " +
+                + "\"ekycIdType=\"A\" " +
                 "responseSigType=\"pkcs7pdf\" " +
                 "responseUrl=\"" + eSignListDetails.get(0).getResponseUrl() + "\" " +
                 "sc=\"Y\" " +
@@ -213,7 +222,7 @@ public class AppendDigitalSignOnPdf {
             connection.setRequestProperty("Content-Type", "application/xml");
 
             /**
-             * Convert String XML into byte array and Post To Server
+             * Convert String XML into byte array and Send Request to ESP Server
              */
 
             OutputStream outputStream = connection.getOutputStream();
@@ -226,23 +235,26 @@ public class AppendDigitalSignOnPdf {
             outputStream.close();
 
             /**
-             * Collect the response through Inputstream
+             * Collect the response
              */
             InputStream inputStream = connection.getInputStream();
 
             byte[] res = new byte[2048];
             int i = 0;
-            StringBuilder response = new StringBuilder();
+            StringBuilder eSignXmlResponse = new StringBuilder();
             while (true) {
 
                 if (!((i = inputStream.read(res)) != -1)) break;
 
-                response.append(new String(res, 0, i));
+                eSignXmlResponse.append(new String(res, 0, i));
             }
 
             inputStream.close();
 
-            System.out.println("Response= " + response.toString());
+            System.out.println("Response= " + eSignXmlResponse.toString());
+
+            ParseXmlResponse(eSignXmlResponse.toString());
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (ProtocolException e) {
@@ -253,4 +265,45 @@ public class AppendDigitalSignOnPdf {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Parse XML Response
+     * @param eSignXmlResponse
+     */
+
+    public static void ParseXmlResponse(String eSignXmlResponse) {
+        try {
+            DocumentBuilderFactory dbf =
+                    DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            InputSource is = new InputSource();
+            is.setCharacterStream(new StringReader(eSignXmlResponse));
+
+            Document doc = db.parse(is);
+            String age = doc.getElementsByTagName("EsignResp").item(0).getTextContent();
+
+            // iterate the employees
+            NodeList list = doc.getElementsByTagName("EsignResp");
+
+            // iterate the employees
+            for (int i = 0; i < list.getLength(); i++) {
+                Node node = list.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+                    // get staff's attribute
+                    String resCode = element.getTextContent();
+
+                    System.out.println("Current Element :" + node.getNodeName());
+                    System.out.println("resCode : " + resCode);
+                }
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
