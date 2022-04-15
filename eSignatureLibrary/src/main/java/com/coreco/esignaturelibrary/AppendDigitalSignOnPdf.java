@@ -293,7 +293,6 @@ public class AppendDigitalSignOnPdf {
                     Element element = (Element) node;
                     // get staff's attribute
                     String resCode = element.getTextContent();
-
                     System.out.println("Current Element :" + node.getNodeName());
                     System.out.println("resCode : " + resCode);
                 }
