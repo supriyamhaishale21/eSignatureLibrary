@@ -53,15 +53,15 @@ public class AppendDigitalSignOnPdf {
      * @param context
      * @param eSignJsonFile Get the JSON file from assets folder and Read it.
      */
-    public static void GetPDFeSignParams(Context context, String eSignJsonFile, TextView txtJsonInput) {
-        ParseJson(eSignJsonFile,txtJsonInput);
+    public static void GetPDFeSignParams(Context context, String eSignJsonFile, TextView txtJsonInput,TextView txtTitle) {
+        ParseJson(eSignJsonFile,txtJsonInput,txtTitle);
     }
 
     /**
      * @param eSignJsonDetails Parse Json String and store it in Arraylist object
      *                         Pass this ArrayList to Create XML file
      */
-    public static void ParseJson(String eSignJsonDetails,TextView txtJsonInput) {
+    public static void ParseJson(String eSignJsonDetails,TextView txtJsonInput,TextView txtTitle) {
         ArrayList<PdfDetails> pdfListDetails = new ArrayList<>();
         ArrayList<eSignPdfDetails> esignListDetails = new ArrayList<>();
         ArrayList<SignatureDetails> signatureListDetails = new ArrayList<>();
@@ -118,7 +118,7 @@ public class AppendDigitalSignOnPdf {
             /**
              * Create XML file
              */
-            CreateXmlRequest(esignListDetails,txtJsonInput);
+            CreateXmlRequest(esignListDetails,txtJsonInput,txtTitle);
 
 
         } catch (JSONException e) {
@@ -141,7 +141,7 @@ public class AppendDigitalSignOnPdf {
      * @throws IOException                  Create XML request from inputs received from ASP client Application
      */
 
-    public static void CreateXmlRequest(ArrayList<eSignPdfDetails> eSignListDetails,TextView txtJsonInput)
+    public static void CreateXmlRequest(ArrayList<eSignPdfDetails> eSignListDetails,TextView txtJsonInput,TextView txtTitle)
             throws ParserConfigurationException, TransformerException, IOException {
 
         /**
@@ -168,16 +168,18 @@ public class AppendDigitalSignOnPdf {
                 "</Signature>" +
                 "</Esign>";
 
+        txtTitle.setText("This is XML Request");
+
         txtJsonInput.setText(eSignXml);
 
-        postXmlRequestToESP(eSignXml);
+        postXmlRequestToESP(eSignXml,txtJsonInput,txtTitle);
 
     }
 
     /**
      * @param eSignXml
      */
-    public static void postXmlRequestToESP(String eSignXml) {
+    public static void postXmlRequestToESP(String eSignXml,TextView txtJsonInput,TextView txtTitle) {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         try {
@@ -243,6 +245,9 @@ public class AppendDigitalSignOnPdf {
 
             System.out.println("Response= " + eSignXmlResponse.toString());
 
+            txtTitle.setText("This is XML Response");
+
+            txtJsonInput.setText(eSignXmlResponse.toString());
             ParseXmlResponse(eSignXmlResponse.toString());
 
         } catch (MalformedURLException e) {

@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TextView txtJsonInput=findViewById(R.id.txtJsonInput);
+        TextView txtTitle=findViewById(R.id.txtTitle);
 
         Button btnXmlRequest=findViewById(R.id.btnXmlRequest);
 
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         btnXmlRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AppendDigitalSignOnPdf.GetPDFeSignParams(MainActivity.this,pdfJsonInput,txtJsonInput);
+                AppendDigitalSignOnPdf.GetPDFeSignParams(MainActivity.this,pdfJsonInput,txtJsonInput,txtTitle);
             }
         });
 
