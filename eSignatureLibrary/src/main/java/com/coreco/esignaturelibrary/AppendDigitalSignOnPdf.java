@@ -1,6 +1,7 @@
 package com.coreco.esignaturelibrary;
 
 import android.content.Context;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.coreco.esignaturelibrary.Model.Coordinate;
@@ -51,30 +52,15 @@ public class AppendDigitalSignOnPdf {
      * @param context
      * @param eSignJsonFile Get the JSON file from assets folder and Read it.
      */
-    public static void GetPDFeSignParams(Context context, String eSignJsonFile) {
-        String eSignJsonDetails;
-        try {
-            InputStream is = context.getAssets().open(eSignJsonFile);
-
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-
-            eSignJsonDetails = new String(buffer, "UTF-8");
-
-            ParseJson(eSignJsonDetails);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+    public static void GetPDFeSignParams(Context context, String eSignJsonFile, TextView txtJsonInput) {
+        ParseJson(eSignJsonFile,txtJsonInput);
     }
 
     /**
      * @param eSignJsonDetails Parse Json String and store it in Arraylist object
      *                         Pass this ArrayList to Create XML file
      */
-    public static void ParseJson(String eSignJsonDetails) {
+    public static void ParseJson(String eSignJsonDetails,TextView txtJsonInput) {
         ArrayList<PdfDetails> pdfListDetails = new ArrayList<>();
         ArrayList<eSignPdfDetails> esignListDetails = new ArrayList<>();
         ArrayList<SignatureDetails> signatureListDetails = new ArrayList<>();
@@ -131,7 +117,7 @@ public class AppendDigitalSignOnPdf {
             /**
              * Create XML file
              */
-            CreateXmlRequest(esignListDetails);
+            CreateXmlRequest(esignListDetails,txtJsonInput);
 
 
         } catch (JSONException e) {
@@ -154,7 +140,7 @@ public class AppendDigitalSignOnPdf {
      * @throws IOException                  Create XML request from inputs received from ASP client Application
      */
 
-    public static void CreateXmlRequest(ArrayList<eSignPdfDetails> eSignListDetails)
+    public static void CreateXmlRequest(ArrayList<eSignPdfDetails> eSignListDetails,TextView txtJsonInput)
             throws ParserConfigurationException, TransformerException, IOException {
 
         /**
@@ -181,6 +167,7 @@ public class AppendDigitalSignOnPdf {
                 "</Signature>" +
                 "</Esign>";
 
+        txtJsonInput.setText(eSignXml);
 
         postXmlRequestToESP(eSignXml);
 

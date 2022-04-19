@@ -1,0 +1,11 @@
+2022-04-17 22:19:10.644 - Starting EsignUtilApplication vVerasys-1.0 on LAPTOP-EES4Q371 with PID 16008 (F:\CorecoTexh_Projects\eSignatureApp\app\libs\esignutil-Verasys-1.0.jar started by Smile in F:\CorecoTexh_Projects\eSignatureApp)
+2022-04-17 22:19:10.648 - No active profile set, falling back to default profiles: default
+2022-04-17 22:19:12.842 - Tomcat initialized with port(s): 7079 (http)
+2022-04-17 22:19:12.862 - Starting service [Tomcat]
+2022-04-17 22:19:12.862 - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2022-04-17 22:19:12.957 - Initializing Spring embedded WebApplicationContext
+2022-04-17 22:19:12.958 - Root WebApplicationContext: initialization completed in 2191 ms
+2022-04-17 22:19:13.156 - PdfSigingOperationsImpl instance created
+2022-04-17 22:19:13.405 - Initializing ExecutorService 'applicationTaskExecutor'
+2022-04-17 22:19:13.662 - Tomcat started on port(s): 7079 (http) with context path ''
+2022-04-17 22:19:13.676 - Started EsignUtilApplication in 4.054 seconds (JVM running for 5.519)
