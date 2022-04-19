@@ -1,6 +1,7 @@
 package com.coreco.esignaturelibrary;
 
 import android.content.Context;
+import android.os.StrictMode;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -177,6 +178,8 @@ public class AppendDigitalSignOnPdf {
      * @param eSignXml
      */
     public static void postXmlRequestToESP(String eSignXml) {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         try {
             URL url = new URL("https://esignuat.vsign.in/asp/esign/3.2/signature");
 
