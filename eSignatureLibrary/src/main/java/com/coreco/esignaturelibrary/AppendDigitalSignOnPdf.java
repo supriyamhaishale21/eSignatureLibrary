@@ -1,7 +1,10 @@
 package com.coreco.esignaturelibrary;
 
 import android.content.Context;
+import android.net.Uri;
+import android.os.Build;
 import android.os.StrictMode;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +38,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -50,6 +54,7 @@ import javax.xml.transform.stream.StreamResult;
 
 public class AppendDigitalSignOnPdf {
 
+    GeneratePDFHash generatePDFHash;
     /**
      * @param context
      * @param eSignJsonFile Get the JSON file from assets folder and Read it.
@@ -116,6 +121,21 @@ public class AppendDigitalSignOnPdf {
                     txn, aspId, pfxPath, pfxPassword, pfxAlias, signingAlgorithm,
                     maxWaitPeriod, ver, AuthMode, fileType, pdfListDetails));
 
+
+
+            Uri imagePath = Uri.parse("android.resource://com.coreco.esignatureapp/drawable/tickimage");
+            String tickImagePath=imagePath.toString();
+
+
+
+            // if(file.exists()){
+//            generatePDFHash.generatePdfHashFromFile(file,tickImagePath,"cache",100,700,100,
+//                    200,"Shekhar","pune",
+//                    "Testing",0,true,
+//                    60,10000);
+            //}
+
+
             /**
              * Create XML file
              */
@@ -168,6 +188,8 @@ public class AppendDigitalSignOnPdf {
                 "<Signature xmlns=\"http://www.w3.org/2000/09/xmldsig#\">" +
                 "</Signature>" +
                 "</Esign>";
+
+        Log.d("XML Request:",eSignXml);
 
         txtXMLRequest.setText(eSignXml);
 

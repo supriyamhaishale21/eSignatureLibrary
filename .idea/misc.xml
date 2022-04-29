@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/CorecoTexh_Projects/eSignatureApp/app/src/main/res/layout/activity_auth_page.xml" value="0.14791666666666667" />
+        <entry key="..\:/CorecoTexh_Projects/eSignatureApp/app/src/main/res/layout/activity_choose_pdf_file.xml" value="0.14492753623188406" />
         <entry key="..\:/CorecoTexh_Projects/eSignatureApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
       </map>
     </option>
