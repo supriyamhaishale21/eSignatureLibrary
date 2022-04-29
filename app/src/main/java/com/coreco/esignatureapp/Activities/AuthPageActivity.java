@@ -14,7 +14,7 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
+
 
 import com.coreco.esignatureapp.R;
 
@@ -28,7 +28,25 @@ public class AuthPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String html_content=getIntent().getExtras().getString("html_content");
+        String html_content="<html xmlns:th=\"http://www.thymeleaf.org\">\n" +
+                "<body>\n" +
+                "<form id=\"authPageForm\" action=\"https://esignuat.vsign.in/esp/authpage\" method=\"post\">\n" +
+                "<br> <input type=\"text\" id=\"txnref\" name=\"txnref\" value=\"VlNZU1RFU1Q6MjkwNDIwMjIxMDIzMjM0MjMwMDA6NTYwMXwwZjdjNWU3OTNkOWI4NTYyOWFhZjAyMzRmNzY5MmZhYg==\"> \n" +
+                "<br> <input type=\"submit\" value=\"Submit\"> </form>\n" +
+                "</div> </body>\n" +
+                "\n" +
+                "<script type=\"text/javascript\">\n" +
+                "function formAutoSubmit () {\n" +
+                "\n" +
+                "var frm = document.getElementById(\"authPageForm\");\n" +
+                "\n" +
+                "frm.submit();\n" +
+                "\n" +
+                "}\n" +
+                "\n" +
+                "window.onload = formAutoSubmit;\n" +
+                "</script>\n" +
+                "</html>";
         Log.d("Html Content: ",html_content);
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -41,18 +59,15 @@ public class AuthPageActivity extends AppCompatActivity {
         web_view.getSettings().setJavaScriptEnabled(true);
         web_view.getSettings().setGeolocationEnabled(true);
         web_view.setSoundEffectsEnabled(true);
-      //  web_view.addJavascriptInterface(new MyJavaScriptInterface(this), "HtmlViewer");
-        //String strCrome = "Mozilla/5.0 (Linux; U; Android-4.0.3; en-us; Xoom Build/IML77) AppleWebKit/535.7 (KHTML, like Gecko) CrMo/16.0.912.75 Safari/535.7";
 
-        //web_view.getSettings().setUserAgentString(strCrome); web_view.getSettings().setSupportZoom(true);
-        web_view.loadData( Html.fromHtml(html_content).toString(),"text/html","UTF-8");
+        web_view.loadData(html_content,"text/html","UTF-8");
 
         web_view.setWebViewClient(new WebViewClient()
         {
             @Override
             public void onPageFinished(WebView view, String url)
             {
-                //web_view.loadUrl("javascript:window.HtmlViewer.showHTML" +html_content);
+
             }
         });
 

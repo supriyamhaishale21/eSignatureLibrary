@@ -317,14 +317,16 @@ public class ChoosePdfFileActivity extends AppCompatActivity {
 
                 if(status.equals("1"))
                 {
-                    String txnref =txn + "|" + resCode;
+                    String txnref =txn+"|"+ resCode;
                     System.out.println("txnref: " + txnref);
                     // Base 64 conversion of txn and response code
-                    byte[] data = txnref.getBytes("UTF-8");
+                    byte[] data = txnref.trim().getBytes("UTF-8");
                     String base64TxnRef = Base64.encodeToString(data, Base64.DEFAULT);
                     System.out.println("base64TxnRef: " + base64TxnRef);
 
-                    httpPostRequest(base64TxnRef);
+                    Intent intent=new Intent(ChoosePdfFileActivity.this,AuthPageActivity.class);
+                    intent.putExtra("txnref",base64TxnRef);
+                    startActivity(intent);
                 }
 
 
@@ -350,77 +352,6 @@ public class ChoosePdfFileActivity extends AppCompatActivity {
         return "?";
     }
 
-    /**
-     * Method to get Html response from ESP Auth Page API
-     * @param base64Value
-     */
-    private void httpPostRequest(String base64Value)
-    {
-        HttpURLConnection con = null;
-        String url = "https://esignuat.vsign.in/esp/authpage";
-        String urlParameters = "txnref="+base64Value;
-        byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
-
-        try {
-
-            URL myurl = new URL(url);
-            con = (HttpURLConnection) myurl.openConnection();
-
-            con.setDoOutput(true);
-            con.setRequestMethod("POST");
-            con.setRequestProperty("User-Agent", "Java client");
-            con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-
-            try (DataOutputStream wr = new DataOutputStream(con.getOutputStream())) {
-
-                wr.write(postData);
-            }
-
-            StringBuilder content;
-
-            try (BufferedReader br = new BufferedReader(
-                    new InputStreamReader(con.getInputStream()))) {
-
-                String line;
-                content = new StringBuilder();
-
-                while ((line = br.readLine()) != null) {
-                    content.append(line);
-                    content.append(System.lineSeparator());
-                }
-            }
-
-            System.out.println(content.toString());
-
-            Intent i = new Intent(ChoosePdfFileActivity.this, AuthPageActivity.class);
-            i.putExtra("html_content", String.valueOf(content.toString()));
-                   startActivity(i);
-
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-
-            con.disconnect();
-        }
-
-    }
-
-    private void writeToFile(String data,Context context) {
-        try {
-            File file=new File(getCacheDir(),"authhtmlpage.txt");
-
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("authhtmlpage.txt", Context.MODE_PRIVATE));
-            outputStreamWriter.write(data);
-            outputStreamWriter.close();
-        }
-        catch (IOException e) {
-            Log.e("Exception", "File write failed: " + e.toString());
-        }
-    }
 
     /**
      * @param eSignXml

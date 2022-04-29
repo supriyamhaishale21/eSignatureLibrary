@@ -256,9 +256,6 @@ public class XmlDigitalSigner {
         Log.d("DOMSignContext:8 ", dsc.toString());
 
 
-//        Element element = (Element)xmlDoc.getElementsByTagName("InputHash").item(0);
-//        dsc.setIdAttributeNS(element, null, "id");
-
         Node node = dsc.getParent();
 
         Log.d("Try block:9 ", "Inside Try block");
