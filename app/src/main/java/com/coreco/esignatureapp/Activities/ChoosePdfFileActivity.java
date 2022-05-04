@@ -169,7 +169,7 @@ public class ChoosePdfFileActivity extends AppCompatActivity {
                 "\"signingAlgorithm\":\"RSA\"," +
                 "\"maxWaitPeriod\":\"1440\"," +
                 "\"ver\":\"3.2\"," +
-                "\"AuthMode\":\"1\"," +
+                "\"AuthMode\":\"2\"," +
                 "\"fileType\":\"path\"," +
                 "\"pdfdetails\":[{\"pdfbase64val\":" +
                 "\"" + selectedFilePath +
@@ -222,8 +222,8 @@ public class ChoosePdfFileActivity extends AppCompatActivity {
         Map<String, Object> responseMap = new HashMap<String, Object>();
         responseMap=generatePDFHash.generatePdfHash(ChoosePdfFileActivity.this,
                 selectedFilePath,tickImagePath,
-                "Supriya A Mhaishale","Testing","Ichalkaranji",
-                "true",Float.parseFloat(childObject2.getString("x")),
+                "","","",
+                "",Float.parseFloat(childObject2.getString("x")),
                 Float.parseFloat(childObject2.getString("y")),
                 Float.parseFloat(childObject2.getString("w")),
                 Float.parseFloat(childObject2.getString("h")),
@@ -254,7 +254,7 @@ public class ChoosePdfFileActivity extends AppCompatActivity {
                 "\" aspId=\"" + "VSYSTEST"
                 + "\"ekycIdType=\"A\" " +
                 "responseSigType=\"pkcs7pdf\" " +
-                "responseUrl=\"" + "https://esignuat.vsign.in/asp/esign/2.1/signature" + "\" " +
+                "responseUrl=\"" + "http://10.0.2.2:80/CallBackUrlVerasys/call_back_url.php" + "\" " +
                 "sc=\"Y\" " +
                 "ts=\""+ AspConstants.generateTsValue()+"\" " +
                 "txn=\"" + AspConstants.generateTxn("VSYSTEST") + "\">" +
