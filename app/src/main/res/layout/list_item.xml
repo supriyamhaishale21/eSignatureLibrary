@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/textPage"
+                android:layout_width="70dp"
+                android:layout_margin="5dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="Page"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/editPage"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textPage"
+                android:layout_margin="5dp"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textX"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="5dp"
+                android:text="X"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/editX"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textX"
+                android:layout_margin="5dp"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textY"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_centerHorizontal="true"
+                android:text="Y"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/editY"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textY"
+                android:layout_margin="5dp"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textW"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_centerHorizontal="true"
+                android:text="W"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/editW"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textW"
+                android:layout_margin="5dp"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textH"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_centerHorizontal="true"
+                android:text="H"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/editH"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textH"
+                android:layout_margin="5dp"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
+

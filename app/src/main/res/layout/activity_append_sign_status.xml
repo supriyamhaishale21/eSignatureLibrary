@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center_vertical"
+    android:gravity="center_horizontal|center_vertical"
+    android:background="#9370DB"
+    tools:context=".Activities.AppendSignStatusActivity">
+
+
+    <ImageView
+        android:id="@+id/imageStatus"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        tools:ignore="ImageContrastCheck"
+        tools:srcCompat="@drawable/img_error" />
+
+    <TextView
+        android:id="@+id/textStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_margin="10dp"
+        android:typeface="sans"
+        android:textStyle="bold"
+        android:textSize="18sp"/>
+
+    <Button
+        android:id="@+id/buttonShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:text="Open PDF"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:typeface="serif"/>
+</LinearLayout>

@@ -56,6 +56,7 @@ dependencies {
 
     implementation files('libs\\xmlsec-1.4.4.jar')
     implementation files('libs\\json-simple-1.1.jar')
+    implementation files('libs\\simple-xml-2.7.1.jar')
     //implementation files('libs\\javax.xml.bind.jar')
 //    implementation files('libs\\jakarta.xml.bind-api-4.0.0.jar')
 //    implementation files('libs\\javax.xml.bind.jar')

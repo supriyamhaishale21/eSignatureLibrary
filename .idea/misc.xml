@@ -3,9 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/CorecoTexh_Projects/eSignatureApp/app/src/main/res/drawable/button_background.xml" value="0.19166666666666668" />
+        <entry key="..\:/CorecoTexh_Projects/eSignatureApp/app/src/main/res/drawable/et_cust.xml" value="0.153" />
+        <entry key="..\:/CorecoTexh_Projects/eSignatureApp/app/src/main/res/drawable/trans_btn_background.xml" value="0.153" />
+        <entry key="..\:/CorecoTexh_Projects/eSignatureApp/app/src/main/res/layout/activity_append_sign_status.xml" value="0.1" />
         <entry key="..\:/CorecoTexh_Projects/eSignatureApp/app/src/main/res/layout/activity_auth_page.xml" value="0.14791666666666667" />
         <entry key="..\:/CorecoTexh_Projects/eSignatureApp/app/src/main/res/layout/activity_choose_pdf_file.xml" value="0.14492753623188406" />
         <entry key="..\:/CorecoTexh_Projects/eSignatureApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/CorecoTexh_Projects/eSignatureApp/app/src/main/res/layout/activity_pdf_selection.xml" value="0.176" />
+        <entry key="..\:/CorecoTexh_Projects/eSignatureApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.176" />
+        <entry key="..\:/CorecoTexh_Projects/eSignatureApp/app/src/main/res/layout/add_details.xml" value="0.2421875" />
+        <entry key="..\:/CorecoTexh_Projects/eSignatureApp/app/src/main/res/layout/list_item.xml" value="0.2" />
+        <entry key="..\:/CorecoTexh_Projects/eSignatureApp/app/src/main/res/layout/theme.xml" value="0.12760416666666666" />
       </map>
     </option>
   </component>
