@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="info_file_path">"/Signature Pdf Details/SignedInfo"</string>
+    <string name="dest_file_path">"/Signature Pdf Details/SignedPDF"</string>
+    <string name="dest_file_name">"tempSign.pdf"</string>
+    <string name="info_file_name">"tempInfoFile.txt"</string>
+</resources>

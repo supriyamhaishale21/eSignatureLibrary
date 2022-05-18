@@ -18,11 +18,14 @@
     <string name="file_type">path</string>
     <string name="docUrl">"https://esign.verasys.in/"</string>
     <string name="reason">Signed by User</string>
+    <string name="signingAlgorithm">RSA</string>
+    <string name="maxWaitPeriod">1440</string>
+
 
     <string name="ASPBASEURL">"https://drona-be-stg.corecotechnologies.com/"</string>
     <string name="ESPBASEURL">"https://esignuat.vsign.in/asp/esign/2.1/signature"</string>
     <string name="callback_url_name">verasys/doCallback</string>
-    <string name="response_url_name">verasys/doCallback</string>
+    <string name="response_url_name">verasys/getCallbackXMLDetails</string>
 
     <string name="pfx_file_name">"vsign_test_certificate.pfx"</string>
     <string name="tick_image_file_name">"tickimage.png"</string>
@@ -30,13 +33,5 @@
     <string name="dest_file_path">"/Signature Pdf Details/SignedPDF"</string>
     <string name="dest_file_name">"tempSign.pdf"</string>
     <string name="info_file_name">"tempInfoFile.txt"</string>
-
-
-
-
-
-
-
-
 
 </resources>

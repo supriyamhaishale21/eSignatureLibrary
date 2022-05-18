@@ -1,4 +1,4 @@
-package com.coreco.esignaturelibrary.PermissionsUtils;
+package com.coreco.esignatureapp.PermissionsUtils;
 
 import android.app.Activity;
 import android.content.Context;

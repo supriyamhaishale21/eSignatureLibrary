@@ -56,23 +56,6 @@ public class AspConstants {
         return sdfTS2.format(new Date());
     }
 
-    /**
-     * decode encoded url in proper format
-     *
-     * @param encodedUrl
-     * @return
-     */
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    final public static String decodeUrlStringData(String encodedUrl) {
-        String decodedUrl = "";
-        try {
-            decodedUrl = URLDecoder.decode(encodedUrl, StandardCharsets.UTF_8.toString());
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return decodedUrl;
-    }
-
     public static String getHtml(String txnref)
     {
         String htmlContent="<html xmlns:th=\"http://www.thymeleaf.org\">\n" +
@@ -108,7 +91,7 @@ public class AspConstants {
     public static String getJsonInput(Context context, String pdfFilePath,String pdfFileName,int pageCount) throws IOException {
         // Get file path of pfx file
 
-        File pfxFile = getFileFromAssets(context, "vsign_test_certificate.pfx");
+        File pfxFile = getFileFromAssets(context, context.getResources().getString(R.string.pfx_file_name));
         String pfxFilePath = pfxFile.getAbsolutePath();
 
 
@@ -161,9 +144,10 @@ public class AspConstants {
         pdfJsonInput="{\"tempInfoPath\":\""+infoData+"\"," +
                 "\"signerid\":\"\"," +
                 "\"redirectUrl\":\""+context.getResources().getString(R.string.redirect_url)+"\"," +
-                "\"responseUrl\":\""+ASPBASEURL+context.getResources().getString(R.string.callback_url_name)+"\",\"txn\":\""+generateTxn(aspId)+"\"," +
+                "\"responseUrl\":\""+ASPBASEURL+context.getResources().getString(R.string.callback_url_name)+"\",\"txn\":\""+generateTxn(context.getResources().getString(R.string.aspId))+"\"," +
                 "\"aspId\":\""+context.getResources().getString(R.string.aspId)+"\",\"pfxPath\":\""+pfxFilePath+"\",\"pfxPassword\":\""+context.getResources().getString(R.string.pfxPassword)+"\"," +
-                "\"pfxAlias\":\""+context.getResources().getString(R.string.pfxAlias)+"\",\"signingAlgorithm\":\"RSA\",\"maxWaitPeriod\":\"1440\"," +
+                "\"pfxAlias\":\""+context.getResources().getString(R.string.pfxAlias)+"\",\"signingAlgorithm\":\""+context.getResources().getString(R.string.signingAlgorithm)+"\"," +
+                "\"maxWaitPeriod\":\""+context.getResources().getString(R.string.maxWaitPeriod)+"\"," +
                 "\"ver\":\""+context.getResources().getString(R.string.ver)+"\",\"AuthMode\":\""+context.getResources().getString(R.string.authMode)+"\"," +
                 "\"fileType\":\""+context.getResources().getString(R.string.file_type)+"\"," +
                 "\"pdfdetails\":[{\"pdfbase64val\":\""+pdfFilePath+"\"," +

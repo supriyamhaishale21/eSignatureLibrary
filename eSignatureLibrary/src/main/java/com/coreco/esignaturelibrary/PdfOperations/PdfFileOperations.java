@@ -13,7 +13,8 @@ import androidx.annotation.RequiresApi;
 import com.coreco.esignaturelibrary.Constants.AspConstants;
 import com.coreco.esignaturelibrary.Model.responseModel.DocSignature;
 import com.coreco.esignaturelibrary.Model.responseModel.EsignResp;
-import com.coreco.esignaturelibrary.XmlDigitalSigner;
+import com.coreco.esignaturelibrary.R;
+import com.coreco.esignaturelibrary.XmlSignedInfoHash.XmlDigitalSigner;
 import com.tom_roush.harmony.awt.geom.AffineTransform;
 import com.tom_roush.pdfbox.cos.COSDictionary;
 import com.tom_roush.pdfbox.cos.COSName;
@@ -512,12 +513,12 @@ public class PdfFileOperations implements SignatureInterface {
                         DocSignature docSig = esignResp.getSignatures().getDocSignature().get(i);
 
 
-                        File pdfFile = new File(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) + "/Signature Pdf Details/SignedPDF/" + txnDirVal + "/" + (i + 1) + "/tempSign.pdf");
+                        File pdfFile = new File(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) + context.getResources().getString(R.string.dest_file_path)+"/" + txnDirVal + "/" + (i + 1) + "/"+context.getResources().getString(R.string.dest_file_name));
                         if (pdfFile.exists()) {
                             signDocumentPath = pdfFile.getAbsolutePath();
                         }
-                        //File infoFile=new File(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),"/Signature Pdf Details/temp_info.txt");
-                        File infoFile = new File(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) + "/Signature Pdf Details/SignedInfo" + "/" + txnDirVal + "/" + (i + 1) + "/tempInfoFile.txt");
+
+                        File infoFile = new File(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) + context.getResources().getString(R.string.info_file_path) + "/" + txnDirVal + "/" + (i + 1) + "/"+context.getResources().getString(R.string.info_file_name));
                         if (infoFile.exists()) {
                             signInfoPath = infoFile.getAbsolutePath();
                         }
@@ -922,8 +923,8 @@ public class PdfFileOperations implements SignatureInterface {
                 JSONObject array_element = (JSONObject) pdfDocList.get(i);
                 JSONArray pageNo = (JSONArray) array_element.get("signaturedetails");
 
-                if (!new File(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) + "/Signature Pdf Details/SignedPDF/" + txnDirVal + "/" + (i + 1)).exists()) {
-                    new File(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) + "/Signature Pdf Details/SignedPDF/" + txnDirVal + "/" + (i + 1)).mkdirs();
+                if (!new File(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) + context.getResources().getString(R.string.dest_file_path)+ "/" + txnDirVal + "/" + (i + 1)).exists()) {
+                    new File(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) + context.getResources().getString(R.string.dest_file_path)+ "/" + txnDirVal + "/" + (i + 1)).mkdirs();
                 }
 
 
@@ -941,7 +942,7 @@ public class PdfFileOperations implements SignatureInterface {
                 Map<String, Object> responseMap = new HashMap<String, Object>();
                 responseMap = generatePdfHash(context,
                         pdfFileVal,
-                        context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) + "/Signature Pdf Details/SignedPDF/" + txnDirVal + "/" + (i + 1) + "/tempSign.pdf"
+                        context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) + context.getResources().getString(R.string.dest_file_path)+"/" + txnDirVal + "/" + (i + 1) + "/"+context.getResources().getString(R.string.dest_file_name)
                         , "",
                         "",
                         array_element.get("reason").toString(), "", signatureFieldName,
@@ -950,7 +951,7 @@ public class PdfFileOperations implements SignatureInterface {
                         Float.parseFloat(array_element.get("coordinates").toString().split(",")[2]),
                         Float.parseFloat(array_element.get("coordinates").toString().split(",")[3]),
                         true
-                        , reqJsonObject.get("tempInfoPath").toString() + "/" + txnDirVal + "/" + (i + 1) + "/tempInfoFile.txt",
+                        , reqJsonObject.get("tempInfoPath").toString() + "/" + txnDirVal + "/" + (i + 1) + "/"+context.getResources().getString(R.string.info_file_name),
                         60, 10000,
                         pageNo.toJSONString()
                         , pdfSrcPathVal
@@ -974,7 +975,7 @@ public class PdfFileOperations implements SignatureInterface {
                     + reqJsonObject.get("aspId") + "\" ekycIdType=\"A\" "
                     + "responseSigType=\"pkcs7pdf\" responseUrl=\"" + reqJsonObject.get("responseUrl")
                     + "\" sc=\"Y\" ts=\"" + AspConstants.generateTsValue() + "\" "
-                    + " txn=\"" + reqJsonObject.get("txn") + "\" ver=\"2.1\" AuthMode=\""
+                    + " txn=\"" + reqJsonObject.get("txn") + "\" ver=\""+reqJsonObject.get("ver")+"\" AuthMode=\""
                     + reqJsonObject.get("AuthMode") + "\"><Docs>" + inputHash + "</Docs></Esign>";
             XmlDigitalSigner xmlDigitalSigner = new XmlDigitalSigner();
             String signedEsignReqXml = xmlDigitalSigner.signXML(reqJsonObject.get("pfxPath").toString(),

@@ -2,7 +2,6 @@ package com.coreco.esignatureapp.APIHandler;
 
 
 import com.coreco.esignaturelibrary.Model.responseModel.EsignResp;
-
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

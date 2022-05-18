@@ -80,6 +80,9 @@ public class AuthPageActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This class calls javascript method defined in webpage and perform action on it.
+     */
     class MyJavaScriptInterface {
         Context mContext;
 
